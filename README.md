@@ -85,7 +85,7 @@ In the `truffle-config.js` file, configure your compilers:
 ```javascript
 compilers: {
   solc: {
-    version: "0.5.16", // Use this version
+    version: "0.8.0", // Use this version
     // docker: true,
     // ...
   }
