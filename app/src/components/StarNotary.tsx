@@ -323,22 +323,14 @@ export function StarNotary(): ReactElement {
             >
                 Deploy NotaryStar Contract
             </StyledActionButton>
-            <SectionDivider />
             <StyledGreetingDiv>
-                <StyledLabel>Contract address</StyledLabel>
+                <StyledLabel>Address:</StyledLabel>
                 <div>
-                    {starNotaryContractAddr ? (
-                        starNotaryContractAddr
-                    ) : (
-                        <em>{`<Contract not yet deployed>`}</em>
-                    )}
-                </div>
-                <div></div>
-                <StyledLabel>Current contract:</StyledLabel>
-                <div>
+                    {starNotaryContractAddr ? (starNotaryContractAddr) : (<em>{`<Contract not yet deployed>`}</em>)}
                 </div>
                 <div></div>
             </StyledGreetingDiv>
+            <SectionDivider />
             <StyledActionButton
                 disabled={!active}
                 style={{
