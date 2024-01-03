@@ -47,12 +47,18 @@ contract StarNotary is ERC721 {
         require(starsForSale[_tokenId] > 0, "The Star should be up for sale");
         uint256 starCost = starsForSale[_tokenId];
         address ownerAddress = ownerOf(_tokenId);
-        require(msg.value > starCost, "You need to have enough Ether");
-        _transfer(ownerAddress, msg.sender, _tokenId); // We can't use _addTokenTo or_removeTokenFrom functions, now we have to use _transferFrom
-        if (msg.value > starCost) {
-            payable(ownerAddress).transfer(msg.value - starCost);
-        }
 
+        require(msg.value >= starCost, "You need to send enough Ether");
+
+        _transfer(ownerAddress, msg.sender, _tokenId);
+
+        address payable ownerAddressPayable = payable(ownerAddress);
+        ownerAddressPayable.transfer(starCost);
+
+        if (msg.value > starCost) {
+            payable(msg.sender).transfer(msg.value - starCost);
+        }
+        starsForSale[_tokenId] = 0;
     }
 
     // Implement Task 1 lookUptokenIdToStarInfo
